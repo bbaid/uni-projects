@@ -2,6 +2,8 @@
 
 import time
 
+print(time.time())
+
 while True:
     time.sleep(20*60)  # 20 minutes
     print("Time to take a break!")
