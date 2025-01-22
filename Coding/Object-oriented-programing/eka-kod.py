@@ -26,6 +26,21 @@ params = {
 
 response = requests.get(gebco_wms_url, params=params)
 
+print("content type:", response.headers['Content-Type'])
+print("content length:", response.content[:100])
+
+capabilities_url = "https://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv"
+params = {
+    'service': 'WMS',
+    'version': '1.3.0',
+    'request': 'GetCapabilities'
+}
+
+response = requests.get(capabilities_url, params=params)
+with open('response.xml', 'w') as file:
+    file.write(response.text)
+
+exit()
 # Check if the request was successful
 if response.status_code == 200:
     # Open the image from the response content
